@@ -6,14 +6,29 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Setup Virtual Environment') {
+            steps {
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                '''
+            }
+        }
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh '''
+                    . venv/bin/activate
+                    pip install -r requirements.txt
+                '''
             }
         }
         stage('Run Tests') {
             steps {
-                sh 'pytest || true'
+                sh '''
+                    . venv/bin/activate
+                    pytest || true
+                '''
             }
         }
         stage('Build Docker Image') {

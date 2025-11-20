@@ -1,13 +1,9 @@
-cd ~/CICD-conf
-cat > Jenkinsfile << 'EOF'
 pipeline {
     agent any
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', 
-                    url: 'https://github.com/yogeshuh/CICD-conf',
-                    credentialsId: 'edaf145f-c8f0-46d6-ab24-1f219d66755a'
+                checkout scm
             }
         }
         stage('Install Dependencies') {
@@ -32,4 +28,3 @@ pipeline {
         }
     }
 }
-EOF

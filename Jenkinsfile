@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/YOUR_USER/YOUR_REPO.git'
+                git branch: 'main', url: 'https://github.com/yogeshuh/CICD-conf'
+                                   credentialsId: 'edaf145f-c8f0-46d6-ab24-1f219d66755a'
             }
         }
 
